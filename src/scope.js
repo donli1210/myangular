@@ -33,10 +33,15 @@ function Scope(){
 			oldValue = watcher.last;
 			if(newValue !== oldValue){
 				watcher.last = newValue;
-				watcher.listenerFn(newValue,oldValue,self);
+				// ????????? P40
+				watcher.listenerFn(newValue,
+					(oldValue === initWatchVal ? newValue: oldValue),
+					self);
 			}
 		});
 	};
+
+
 	
 }
 

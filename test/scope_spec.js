@@ -89,6 +89,22 @@ describe('Scope', function(){
 
 		});
 
+		it('calls listener with new value as old value the first time', function(){
+			scope.someValue = 123;
+			var oldValueGiven;
+
+			scope.$watch(
+				function(scope) {return scope.someValue;},
+				function(newValue, oldValue, scope) {
+					oldValueGiven = oldValue;
+				}
+			);
+
+			scope.$digest();
+			expect(oldValueGiven).toBe(123);
+
+		});
+
 	});
 
 
